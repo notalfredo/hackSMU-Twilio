@@ -1,16 +1,18 @@
-const accountSid = 'ACe3608a47dd5752bc33ebe4d884eb826a'; // Your Account SID from www.twilio.com/console
-const authToken = 'e2ba56fab278162d744e28b76ed065ee'; // Your Auth Token from www.twilio.com/console
+const sendMessage = (passed_accountSid , passed_authToken , message) =>{
+  const accountSid = passed_accountSid; // Your Account SID from www.twilio.com/console
+  const authToken = passed_authToken; // Your Auth Token from www.twilio.com/console
 
-const twilio = require('twilio');
-const client = new twilio(accountSid, authToken);
+  const twilio = require('twilio');
+  const client = new twilio(accountSid, authToken);
 
-let message = 'click this link www.google.com'
+  client.messages
+    .create({
+      body: message,
+      to: '+12142288513', // Text this number
+      from: '+19032317677', // From a valid Twilio number
+    })
+    .then((message) => console.log(message.sid));
 
-
-client.messages
-  .create({
-    body: message,
-    to: '+12142288513', // Text this number
-    from: '+18149925014', // From a valid Twilio number
-  })
-  .then((message) => console.log(message.sid));
+}
+sendMessage('ACc5da29b9cb0b3710c2c9386f8a50b026' , '0dfdd4119e53ddf99b40a86e9cbb2b4d' ,
+   "hello wolcome from function call" );
